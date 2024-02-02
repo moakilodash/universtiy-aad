@@ -7,21 +7,27 @@
 
 
 // Node structure
-typedef struct Node_s {
-   int data;
-   struct Node_s *next;
-} Node_t;
+//typedef struct Node_s {
+//   int data;
+//   struct Node_s *next;
+//} Node_t;
 
 // Linked list structure
 typedef struct LinkedList_s {
-   Node_t *head;
+    int data;
+    struct LinkedList_s *next;
 } LinkedList_t;
 
 // Function prototypes
-LinkedList_t* create();
-void purge(LinkedList_t *list);
-void insertAtBeginning(LinkedList_t *list, int data);
-void insertAtEnd(LinkedList_t *list, int data);
+LinkedList_t* createNode(int data);
+void purge(LinkedList_t **list);
+void insertAtBeginning(LinkedList_t **list, int data);
+void insertAtEnd(LinkedList_t **list, int data);
+void find(LinkedList_t **list, int key);
+void headExtraction(LinkedList_t **list);
+void tailExtraction(LinkedList_t **list);
+
+void printList(LinkedList_t *list);
 
 
 #endif
