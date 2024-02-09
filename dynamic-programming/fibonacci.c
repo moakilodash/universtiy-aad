@@ -6,11 +6,14 @@
 #include <stdlib.h>
 
 
-int fib(int n) {
-    if (n == 1 || n == 2) {
+int fib(long int n, int *memo) {
+    if (memo[n] != -1)
+       return memo[n];
+    if (n == 1 || n == 2)
         return 1;
-    }
-    return fib(n - 1) + fib(n - 2);
+    int result = fib(n - 1, memo) + fib(n - 2, memo);
+    memo[n] = result;
+    return result;
 }
 
 int main(int argc, char* argv[]) {
@@ -18,6 +21,14 @@ int main(int argc, char* argv[]) {
         return -1;
     }
     int n = atoi(argv[1]);
-    fprintf(stdout, "%d\n", fib(n));
+
+    int *memo = (int *) malloc((n+1)*sizeof(int));
+    for (int i = 0; i <= n; i++) {
+        memo[i] = -1;
+    }
+
+    fprintf(stdout, "Fibonacci %d-th term = %d\n", n, fib(n, memo));
+    free(memo);
+
     return 0;
 }
